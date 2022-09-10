@@ -14,7 +14,6 @@ namespace RomanNumeralsConverter.Tests
             romanNumerals = new RomanNumerals();
         }
 
-
         [TestCase("I", 1)]
         [TestCase("II", 2)]
         [TestCase("III", 3)]
@@ -45,9 +44,15 @@ namespace RomanNumeralsConverter.Tests
         [TestCase("MMDL", 2550)]
         [TestCase("MMMMMMMM", 8000)]
         [TestCase("MMMMMMMMIV", 8004)]
-        public void Given_A_Roman_Numerals_ConvertToNumber_Should_Return_A_Valid_Number(string romanNumber, int expectedNumber)
+        public void Given_A_Roman_Numeral_ConvertToNumber_Should_Return_A_Valid_Number(string romanNumber, int expectedNumber)
         {
             romanNumerals.ConvertToNumber(romanNumber).Should().Be(expectedNumber);
+        }
+
+        [TestCase(1, "I")]
+        public void Given_A_Number_ConvertToRomanNumeral_Should_Return_A_Valid_RomanNumeral(int number, string expectedRomanNumeral)
+        {
+            romanNumerals.ConvertToRomanNumeral(number).Should().Be(expectedRomanNumeral);
         }
     }
 }

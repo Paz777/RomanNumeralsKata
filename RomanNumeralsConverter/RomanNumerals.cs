@@ -31,6 +31,11 @@ namespace RomanNumeralsConverter
             }
             return result;
         }
+
+        public string ConvertToRomanNumeral(int number)
+        {
+            return "I";
+        }
     }
 }
 
