@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace RomanNumeralsConverter
 {
@@ -34,12 +35,18 @@ namespace RomanNumeralsConverter
             { 1, "I" },
         };
 
+        private const string RomanNumberValidationRegEx = "^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$";
+
         public RomanNumerals()
         {
         }
 
         public int ConvertToNumber(string romanNumeral)
         {
+            if (!Regex.IsMatch(romanNumeral, RomanNumberValidationRegEx))
+            {
+                throw new ArgumentOutOfRangeException(romanNumeral);
+            }
             int result = 0;
             for (int index = romanNumeral.Length - 1, last = 0; index >= 0; index--)
             {

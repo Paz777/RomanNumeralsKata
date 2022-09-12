@@ -44,9 +44,23 @@ namespace RomanNumeralsConverter.Tests
         [TestCase("MMDL", 2550)]
         [TestCase("MMMMMMMM", 8000)]
         [TestCase("MMMMMMMMIV", 8004)]
-        public void Given_A_Roman_Numeral_ConvertToNumber_Should_Return_A_Valid_Number(string romanNumber, int expectedNumber)
+        public void Given_A_Roman_Numeral_ConvertToNumber_Should_Return_A_Valid_Number(string romanNumeral, int expectedNumber)
         {
-            romanNumerals.ConvertToNumber(romanNumber).Should().Be(expectedNumber);
+            romanNumerals.ConvertToNumber(romanNumeral).Should().Be(expectedNumber);
+        }
+
+        [TestCase("IIII")]
+        [TestCase("CCCC")]
+        [TestCase("VV")]
+        [TestCase("IC")]
+        [TestCase("IM")]
+        [TestCase("XM")]
+        [TestCase("IL")]
+        [TestCase("MCDXCXI")]
+        [TestCase("MCDDXC")]
+        public void TranslateRomanNumeral_WhenInvalidNumeralSemantics_RaiseException(string invalidRomanNumeral)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => romanNumerals.ConvertToNumber(invalidRomanNumeral));
         }
 
         [TestCase(1, "I")]
