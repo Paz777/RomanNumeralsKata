@@ -58,9 +58,15 @@ namespace RomanNumeralsConverter.Tests
         [TestCase("IL")]
         [TestCase("MCDXCXI")]
         [TestCase("MCDDXC")]
-        public void TranslateRomanNumeral_WhenInvalidNumeralSemantics_RaiseException(string invalidRomanNumeral)
+        public void Given_A_Roman_Numeral_ConvertToNumber_Should_Throw_A_Exception(string invalidRomanNumeral)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => romanNumerals.ConvertToNumber(invalidRomanNumeral));
+        }
+
+        [Test]
+        public void Given_A_Null_Value_ConvertToNumber_Should_Throw_A_Exception()
+        {
+            Assert.Throws<ArgumentNullException>(() => romanNumerals.ConvertToNumber(null));
         }
 
         [TestCase(1, "I")]
